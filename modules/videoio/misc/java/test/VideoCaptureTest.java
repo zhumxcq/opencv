@@ -1,4 +1,4 @@
-package org.opencv.test.videoio;
+package org.opencv.test.highgui;
 
 import java.util.List;
 

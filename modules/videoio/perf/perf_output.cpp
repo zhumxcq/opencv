@@ -1,15 +1,14 @@
-// This file is part of OpenCV project.
-// It is subject to the license terms in the LICENSE file found in the top-level directory
-// of this distribution and at http://opencv.org/license.html
 #include "perf_precomp.hpp"
 
 #ifdef HAVE_VIDEO_OUTPUT
 
-namespace opencv_test
-{
+using namespace std;
+using namespace cv;
 using namespace perf;
+using std::tr1::make_tuple;
+using std::tr1::get;
 
-typedef tuple<std::string, bool> VideoWriter_Writing_t;
+typedef std::tr1::tuple<std::string, bool> VideoWriter_Writing_t;
 typedef perf::TestBaseWithParam<VideoWriter_Writing_t> VideoWriter_Writing;
 
 const string image_files[] = {
@@ -28,7 +27,7 @@ PERF_TEST_P(VideoWriter_Writing, WriteFrame,
 {
   const string filename = getDataPath(get<0>(GetParam()));
   const bool isColor = get<1>(GetParam());
-  Mat image = imread(filename, isColor ? IMREAD_COLOR : IMREAD_GRAYSCALE );
+  Mat image = imread(filename, 1);
 #if defined(HAVE_MSMF) && !defined(HAVE_VFW) && !defined(HAVE_FFMPEG) // VFW has greater priority
   const string outfile = cv::tempfile(".wmv");
   const int fourcc = VideoWriter::fourcc('W', 'M', 'V', '3');
@@ -42,7 +41,5 @@ PERF_TEST_P(VideoWriter_Writing, WriteFrame,
   SANITY_CHECK_NOTHING();
   remove(outfile.c_str());
 }
-
-} // namespace
 
 #endif // HAVE_VIDEO_OUTPUT

@@ -288,7 +288,6 @@ protected:
 // Linux specific
 #ifdef __linux__
 
-#include <unistd.h>
 #include <va/va_drm.h>
 
 class VAHandle : public DeviceHandler {

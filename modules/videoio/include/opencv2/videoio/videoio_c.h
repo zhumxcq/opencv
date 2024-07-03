@@ -143,6 +143,21 @@ CVAPI(int) cvGrabFrame( CvCapture* capture );
   frame decompression, flipping etc.
   @warning !!!DO NOT RELEASE or MODIFY the retrieved frame!!!
 */
+
+
+CVAPI(bool) cvGetFormats( CvCapture* capture, int &formats );
+
+CVAPI(bool) cvGetFormatType(CvCapture* capture, int formats, cv::String &formatType, int &width, int &height, int &fps );
+
+CVAPI(bool) cvSetFormatType(CvCapture* capture, int index);
+
+CVAPI(bool) cvSetVideoProperty(CvCapture* capture, int id, int value, int mode);
+
+CVAPI(CvCapture*) cvGetDevices(int &devices);
+
+CVAPI(CvCapture*) cvGetDeviceInfo(int index, cv::String &deviceName, cv::String &vid, cv::String &pid, cv::String &devicePath);
+
+
 CVAPI(IplImage*) cvRetrieveFrame( CvCapture* capture, int streamIdx CV_DEFAULT(0) );
 
 /** @brief Just a combination of cvGrabFrame and cvRetrieveFrame
@@ -185,7 +200,7 @@ enum
     CV_CAP_PROP_MONOCHROME    =19,
     CV_CAP_PROP_SHARPNESS     =20,
     CV_CAP_PROP_AUTO_EXPOSURE =21, // exposure control done by camera,
-                                   // user can adjust reference level
+                                   // user can adjust refernce level
                                    // using this feature
     CV_CAP_PROP_GAMMA         =22,
     CV_CAP_PROP_TEMPERATURE   =23,
@@ -207,6 +222,7 @@ enum
     CV_CAP_PROP_AUTOFOCUS     =39,
     CV_CAP_PROP_SAR_NUM       =40,
     CV_CAP_PROP_SAR_DEN       =41,
+    CV_CAP_PROP_AUTO_WHITE_BALANCE =42,
 
     CV_CAP_PROP_AUTOGRAB      =1024, // property for videoio class CvCapture_Android only
     CV_CAP_PROP_SUPPORTED_PREVIEW_SIZES_STRING=1025, // readonly, tricky property, returns cpnst char* indeed
@@ -328,7 +344,7 @@ enum
     CV_CAP_PROP_XI_COLOR_FILTER_ARRAY                           = 475, // Returns color filter array type of RAW data.
     CV_CAP_PROP_XI_GAMMAY                                       = 476, // Luminosity gamma
     CV_CAP_PROP_XI_GAMMAC                                       = 477, // Chromaticity gamma
-    CV_CAP_PROP_XI_SHARPNESS                                    = 478, // Sharpness Strength
+    CV_CAP_PROP_XI_SHARPNESS                                    = 478, // Sharpness Strenght
     CV_CAP_PROP_XI_CC_MATRIX_00                                 = 479, // Color Correction Matrix element [0][0]
     CV_CAP_PROP_XI_CC_MATRIX_01                                 = 480, // Color Correction Matrix element [0][1]
     CV_CAP_PROP_XI_CC_MATRIX_02                                 = 481, // Color Correction Matrix element [0][2]
@@ -519,7 +535,7 @@ enum
 CVAPI(double) cvGetCaptureProperty( CvCapture* capture, int property_id );
 /** @brief set capture properties
 */
-CVAPI(int)    cvSetCaptureProperty( CvCapture* capture, int property_id, double value );
+CVAPI(int)    cvSetCaptureProperty( CvCapture* capture, int property_id, int value );
 
 /** @brief Return the type of the capturer (eg, ::CV_CAP_VFW, ::CV_CAP_UNICAP)
 

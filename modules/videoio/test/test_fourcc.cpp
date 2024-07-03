@@ -41,8 +41,7 @@
 //M*/
 
 #include "test_precomp.hpp"
-
-namespace opencv_test { namespace {
+#include "opencv2/videoio.hpp"
 
 #undef DEFINE_GUID
 #define DEFINE_GUID(n, fourcc, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10) fourcc,
@@ -114,5 +113,3 @@ TEST(Videoio_dshow, fourcc_conversion)
         EXPECT_EQ(fourcc, (unsigned long)(unsigned)fourccFromParam);
     }
 }
-
-}} // namespace
