@@ -681,6 +681,36 @@ public:
      */
     CV_WRAP virtual bool open(const String& filename);
 
+    /** @brief Gets Total Number of Devices
+
+    The C function gets the total Number of Devices Connected
+     */
+    CV_WRAP virtual bool getDevices(CV_OUT int &devices);
+
+    /** @brief Gets Specific Device Information
+
+    The C function gets the information about the Camera Device such as Device Name, VendorID, ProductID and DevicePath.
+     */
+    CV_WRAP virtual bool getDeviceInfo(int index, CV_OUT String &deviceName, CV_OUT String &vid, CV_OUT String &pid, CV_OUT String &devicePath);
+
+    /** @brief Gets Total Number of Formats
+
+    The C function gets the total number of video formats supported by the Camera Device
+     */
+    CV_WRAP virtual bool getFormats(CV_OUT int &formats);
+
+    /** @brief Gets the Video Formats 
+
+    The C function also gets the Video resolutions, fps supported by the particular Camera Device
+     */
+    CV_WRAP virtual bool getFormatType(int formats, CV_OUT String &formatType, CV_OUT int &width, CV_OUT int &height, CV_OUT int &fps);
+
+    /** @brief Sets Video Format to the Camera Device
+
+    The C function also sets the video resolution, fps to the Camera Device
+     */
+    CV_WRAP virtual bool setFormatType(int index);
+ 
     /** @brief  Open a camera for video capturing
 
     @overload
@@ -794,6 +824,14 @@ public:
      */
     CV_WRAP virtual bool set(int propId, double value);
 
+    /** @brief  Sets a property in the VideoCapture
+    
+    @overload
+    
+    Sets the Camera Properties such brightness, contrast, etc., with a particular mode Selection
+    */
+    CV_WRAP virtual bool set(int propId, int value, int mode);
+    
     /** @brief Returns the specified VideoCapture property
 
     @param propId Property identifier from cv::VideoCaptureProperties (eg. cv::CAP_PROP_POS_MSEC, cv::CAP_PROP_POS_FRAMES, ...)
@@ -813,6 +851,15 @@ public:
     */
     CV_WRAP virtual double get(int propId) const;
 
+    /** @brief  Gets the Camera Properties such as brightness, contrast, hue, etc.,
+    
+    @overload
+    
+    Gets the Particular Property's Minimum, Maximum, SupportedMode, CurrentMode, CurrentValue, DefaultValue
+    */
+    
+    CV_WRAP virtual bool get(int propId, CV_IN_OUT int& min, CV_IN_OUT int& max, CV_IN_OUT int& steppingDelta, CV_IN_OUT int& supportedMode, CV_IN_OUT int& currentValue, CV_IN_OUT int& currentMode, CV_IN_OUT int& defaultValue);
+    
     /** @brief Open video file or a capturing device or a IP video stream for video capturing with API Preference
 
     @overload

@@ -137,6 +137,18 @@ CVAPI(CvCapture*) cvCreateCameraCapture( int index );
 */
 CVAPI(int) cvGrabFrame( CvCapture* capture );
 
+CVAPI(bool) cvGetFormats(CvCapture * capture, int& formats);
+
+CVAPI(bool) cvGetFormatType(CvCapture * capture, int formats, cv::String & formatType, int& width, int& height, int& fps);
+
+CVAPI(bool) cvSetFormatType(CvCapture * capture, int index);
+
+CVAPI(bool) cvSetVideoProperty(CvCapture * capture, int id, int value, int mode);
+
+CVAPI(CvCapture*) cvGetDevices(int& devices);
+
+CVAPI(CvCapture*) cvGetDeviceInfo(int index, cv::String & deviceName, cv::String & vid, cv::String & pid, cv::String & devicePath);
+
 /** @brief get the frame grabbed with cvGrabFrame(..)
 
   This function may apply some frame processing like
@@ -207,6 +219,7 @@ enum
     CV_CAP_PROP_AUTOFOCUS     =39,
     CV_CAP_PROP_SAR_NUM       =40,
     CV_CAP_PROP_SAR_DEN       =41,
+    CV_CAP_PROP_AUTO_WHITE_BALANCE = 42,
 
     CV_CAP_PROP_AUTOGRAB      =1024, // property for videoio class CvCapture_Android only
     CV_CAP_PROP_SUPPORTED_PREVIEW_SIZES_STRING=1025, // readonly, tricky property, returns cpnst char* indeed

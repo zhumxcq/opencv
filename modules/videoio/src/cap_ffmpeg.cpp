@@ -260,11 +260,77 @@ public:
     virtual bool isOpened() const CV_OVERRIDE { return ffmpegCapture != 0; }
     virtual int getCaptureDomain() CV_OVERRIDE { return CV_CAP_FFMPEG; }
 
+    virtual bool getDevices(int& devices);
+    virtual bool getDeviceInfo(int index, String& deviceName, String& vid, String& pid, String& devicePath);
+    virtual bool getFormats(int& formats);
+    virtual bool getFormatType(int formats, String& formatType, int& width, int& height, int& fps);
+    virtual bool getVideoProperty(int Property, int& min, int& max, int& steppingDelta, int& supportedMode, int& currentValue, int& currentMode, int& defaultValue);
+    virtual bool setVideoProperty(int settings, int value, int mode);
+
 protected:
     CvCapture_FFMPEG* ffmpegCapture;
 };
 
 } // namespace
+
+bool CvCapture_FFMPEG_proxy::getDevices(int& devices)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    devices = 0;
+    return false;
+}
+
+bool CvCapture_FFMPEG_proxy::getDeviceInfo(int index, String& deviceName, String& vid, String& pid, String& devicePath)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (index == 0)
+    {
+        deviceName = "No devices";
+        vid = "No Vid";
+        pid = "No Pid";
+        devicePath = "Not Detected";
+    }
+    return false;
+}
+
+bool CvCapture_FFMPEG_proxy::getFormats(int& formats)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    formats = 0;
+    return false;
+}
+
+bool CvCapture_FFMPEG_proxy::getFormatType(int formats, String& formatType, int& width, int& height, int& fps)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (formats == 0)
+    {
+        formatType = "Not Detected";
+        width = 0;
+        height = 0;
+        fps = 0;
+    }
+    return false;
+}
+
+bool CvCapture_FFMPEG_proxy::getVideoProperty(int Property, int& min, int& max, int& steppingDelta, int& supportedMode, int& currentValue, int& currentMode, int& defaultValue)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (Property == 0)
+    {
+        min = 0, max = 0, steppingDelta = 0, supportedMode = 0, currentValue = 0, currentMode = 0, defaultValue = 0;
+    }
+    return false;
+}
+
+bool CvCapture_FFMPEG_proxy::setVideoProperty(int settings, int value, int mode)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (settings == 0 && value == 0 && mode == 0)
+    {
+    }
+    return false;
+}
 
 cv::Ptr<cv::IVideoCapture> cvCreateFileCapture_FFMPEG_proxy(const cv::String& filename)
 {

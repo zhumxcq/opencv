@@ -700,6 +700,13 @@ public:
     virtual bool retrieveFrame(int, cv::OutputArray) CV_OVERRIDE;
     virtual bool isOpened() const CV_OVERRIDE { return isOpen; }
     virtual int getCaptureDomain() CV_OVERRIDE { return CV_CAP_MSMF; }
+
+    virtual bool getDevices(int& devices);
+    virtual bool getDeviceInfo(int index, cv::String& deviceName, cv::String& vid, cv::String& pid, cv::String& devicePath);
+    virtual bool getFormats(int& formats);
+    virtual bool getFormatType(int formats, cv::String& formatType, int& width, int& height, int& fps);
+    virtual bool getVideoProperty(int Property, int& min, int& max, int& steppingDelta, int& supportedMode, int& currentValue, int& currentMode, int& defaultValue);
+    virtual bool setVideoProperty(int settings, int value, int mode);
 protected:
     double getFramerate(MediaType MT) const;
     bool configureOutput(UINT32 width, UINT32 height, double prefFramerate, UINT32 aspectRatioN, UINT32 aspectRatioD, int outFormat, bool convertToFormat);
@@ -1229,6 +1236,65 @@ bool CvCapture_MSMF::grabFrame()
                 return true;
             }
         }
+    }
+    return false;
+}
+
+bool CvCapture_MSMF::getDevices(int& devices)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    devices = 0;
+    return false;
+}
+
+bool CvCapture_MSMF::getDeviceInfo(int index, cv::String& deviceName, cv::String& vid, cv::String& pid, cv::String& devicePath)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (index == 0)
+    {
+        deviceName = "No devices";
+        vid = "No Vid";
+        pid = "No Pid";
+        devicePath = "Not Detected";
+    }
+    return false;
+}
+
+bool CvCapture_MSMF::getFormats(int& formats)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    formats = 0;
+    return false;
+}
+
+bool CvCapture_MSMF::getFormatType(int formats, cv::String& formatType, int& width, int& height, int& fps)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (formats == 0)
+    {
+        formatType = "Not Detected";
+        width = 0;
+        height = 0;
+        fps = 0;
+    }
+    return false;
+}
+
+bool CvCapture_MSMF::getVideoProperty(int Property, int& min, int& max, int& steppingDelta, int& supportedMode, int& currentValue, int& currentMode, int& defaultValue)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (Property == 0)
+    {
+        min = 0, max = 0, steppingDelta = 0, supportedMode = 0, currentValue = 0, currentMode = 0, defaultValue = 0;
+    }
+    return false;
+}
+
+bool CvCapture_MSMF::setVideoProperty(int settings, int value, int mode)
+{
+    std::cout << "Currently this API for MotionJpegCapture is not supported" << std::endl;
+    if (settings == 0 && value == 0 && mode == 0)
+    {
     }
     return false;
 }
