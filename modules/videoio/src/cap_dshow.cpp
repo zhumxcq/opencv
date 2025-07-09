@@ -1101,6 +1101,7 @@ videoDevice::~videoDevice(){
         DebugPrintOut("SETUP: freeing Grabber Callback\n");
         sgCallback->Release();
 
+        Sleep(200); // wait for Y8Grabber call back to finish before deleting pixel buffers
         //delete our pixels
         if(sizeSet){
              delete[] pixels;
@@ -4181,6 +4182,8 @@ bool VideoCapture_DShow::setProperty(int propIdx, double propVal)
 
 bool VideoCapture_DShow::grabFrame()
 {
+    Y8newFrame = false;
+    ResetEvent(Y8GrabberEvent);
     return !g_VI.isDeviceDisconnected(m_index);
 }
 
@@ -4327,6 +4330,10 @@ int VideoCapture_DShow::getCaptureDomain()
 bool VideoCapture_DShow::isOpened() const
 {
     return (-1 != m_index);
+}
+
+bool VideoCapture_DShow::isConnected() const {
+    return m_index >= 0 && !g_VI.isDeviceDisconnected(m_index);
 }
 
 void VideoCapture_DShow::open(int index)

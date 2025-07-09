@@ -258,6 +258,7 @@ public:
     }
 
     virtual bool isOpened() const CV_OVERRIDE { return ffmpegCapture != 0; }
+    virtual bool isConnected() const CV_OVERRIDE { return isOpened(); }
     virtual int getCaptureDomain() CV_OVERRIDE { return CV_CAP_FFMPEG; }
 
     virtual bool getDevices(int& devices);

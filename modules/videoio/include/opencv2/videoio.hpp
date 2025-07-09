@@ -739,6 +739,13 @@ public:
      */
     CV_WRAP virtual bool isOpened() const;
 
+    /** @brief Returns true if video device is still connected.
+
+    For CAP_DShow only: monitors the device for events, if device lost return false, otherwise return true
+    Otherwise return same value as isOpened()
+     */
+    CV_WRAP virtual bool isConnected() const;
+
     /** @brief Closes video file or capturing device.
 
     The method is automatically called by subsequent VideoCapture::open and by VideoCapture

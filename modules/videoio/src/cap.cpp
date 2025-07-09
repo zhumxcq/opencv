@@ -253,6 +253,13 @@ bool VideoCapture::isOpened() const
     return !cap.empty();  // legacy interface doesn't support closed files
 }
 
+CV_WRAP bool VideoCapture::isConnected() const
+{
+    if (!icap.empty())
+        return icap->isConnected();
+    return !cap.empty();
+}
+
 String VideoCapture::getBackendName() const
 {
     int api = 0;

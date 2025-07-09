@@ -172,6 +172,7 @@ namespace cv
         virtual bool grabFrame() = 0;
         virtual bool retrieveFrame(int, OutputArray) = 0;
         virtual bool isOpened() const = 0;
+        virtual bool isConnected() const = 0;
         virtual int getCaptureDomain() { return CAP_ANY; } // Return the type of the capture object: CAP_VFW, etc...
     	virtual bool getDevices(int &) = 0;
     	virtual bool getDeviceInfo(int , String &, String &, String &, String &) = 0;

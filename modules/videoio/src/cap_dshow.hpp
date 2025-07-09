@@ -40,6 +40,7 @@ public:
     virtual bool retrieveFrame(int outputType, OutputArray frame) CV_OVERRIDE;
     virtual int getCaptureDomain() CV_OVERRIDE;
     virtual bool isOpened() const;
+    virtual bool isConnected() const;
 protected:
     void open(int index);
     void close();

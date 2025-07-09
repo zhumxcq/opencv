@@ -699,6 +699,7 @@ public:
     virtual bool grabFrame() CV_OVERRIDE;
     virtual bool retrieveFrame(int, cv::OutputArray) CV_OVERRIDE;
     virtual bool isOpened() const CV_OVERRIDE { return isOpen; }
+    virtual bool isConnected() const CV_OVERRIDE { return isOpened(); }
     virtual int getCaptureDomain() CV_OVERRIDE { return CV_CAP_MSMF; }
 
     virtual bool getDevices(int& devices);
