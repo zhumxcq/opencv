@@ -1989,8 +1989,8 @@ bool videoInput::getPixels(int id, unsigned char * dstBuffer, bool flipRedAndBlu
                 processPixels(src, dst, width, height, flipRedAndBlue, flipImage);
             }
 
-            Y8newFrame = false;
-            ResetEvent(Y8GrabberEvent);
+            //Y8newFrame = false;
+            //ResetEvent(Y8GrabberEvent);
             success = true;
         }
         /*-------------------------------------------------------------------------------*/
